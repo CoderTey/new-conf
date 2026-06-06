@@ -1,0 +1,51 @@
+#!/bin/sh
+
+swaybg -m fill -i ~/Pictures/1.jpg &
+riverctl default-layout rivertile
+riverctl spawn rivertile &
+riverctl spawn waybar & 
+
+riverctl map normal Super D spawn "rofi -show drun"
+riverctl map normal Super Return spawn foot
+riverctl map normal Super F spawn thunar
+riverctl map normal Super B spawn firefox
+riverctl map normal Super Q close
+
+riverctl map normal Super+Shift R spawn "~/.config/river/init"
+riverctl map normal Super+Shift Q exit
+riverctl map normal Super+Shift F toggle-fullscreen
+riverctl map normal Super T toggle-float
+
+riverctl map-pointer normal Super BTN_LEFT move-view
+riverctl map-pointer normal Super BTN_RIGHT resize-view
+
+riverctl map normal Super+Alt+Control H snap left
+riverctl map normal Super+Alt+Control J snap down
+riverctl map normal Super+Alt+Control K snap up
+riverctl map normal Super+Alt+Control L snap right
+
+riverctl map normal None XF86AudioRaiseVolume spawn "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
+riverctl map normal None XF86AudioLowerVolume spawn "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-"
+riverctl map normal None XF86AudioMute spawn "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+
+riverctl keyboard-layout -options "grp:win_space_toggle" "us,ru"
+
+for i in $(seq 1 9); do
+    tags=$((1 << ($i - 1)))
+    riverctl map normal Super $i set-focused-tags $tags
+    riverctl map normal Super+Shift $i set-view-tags $tags
+    riverctl map normal Super+Control $i toggle-focused-tags $tags
+done
+
+riverctl map normal Super 0 set-focused-tags $(( (1 << 32) - 1 ))
+riverctl map normal Super+Shift 0 set-view-tags $(( (1 << 32) - 1 ))
+
+
+riverctl map normal Super h focus-view left
+riverctl map normal Super j focus-view down
+riverctl map normal Super k focus-view up
+riverctl map normal Super l focus-view right
+
+riverctl border-width 2
+riverctl border-color-focused 0x9370db
+riverctl border-color-unfocused 0x444444

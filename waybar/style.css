@@ -1,0 +1,30 @@
+* {
+    border: none;
+    font-family: "JetBrainsMono Nerd Font", sans-serif;
+    font-size: 13px;
+    min-height: 0;
+}
+
+#waybar {
+    background-color: rgba(15, 15, 15, 0.5);
+    color: #FFFFFF;
+    border-radius: 0;
+}
+
+#workspaces button {
+    padding: 2px 8px;
+    background-color: rgba(15, 15, 15, 0.2);
+    color: #FFFFFF;
+    margin: 3px;
+    border-radius: 4px;
+}
+
+#workspaces button:hover {
+    background-color: rgba(15, 15, 15, 0.6);
+    color: #FFFFFF;
+}
+
+#workspaces button.active {
+    background-color: rgba(100, 200, 255, 0.5);
+    color: #FFFFFF;
+}
